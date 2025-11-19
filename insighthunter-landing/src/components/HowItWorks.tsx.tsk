@@ -1,0 +1,14 @@
+import React from "react";
+
+const HowItWorks: React.FC = () => (
+  <main style={{padding: "2rem", maxWidth: 800, margin: "0 auto"}}>
+    <h1>How It Works</h1>
+    <ol>
+      <li><strong>Connect Your Data:</strong> Securely link your accounting and banking sources.</li>
+      <li><strong>Instant Analysis:</strong> Our tech scans for patterns, risks, and opportunities—no manual work required.</li>
+      <li><strong>Actionable Guidance:</strong> Review smart recommendations, always with your approval in control.</li>
+      <li><strong>Learn Over Time:</strong> The system adapts based on your feedback for ever sharper insights.</li>
+    </ol>
+  </main>
+);
+export default HowItWorks;
