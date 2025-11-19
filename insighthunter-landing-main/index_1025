@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insight Hunter – AI-Powered CFO Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>AI-Powered CFO Assistant for America’s Small Businesses</h1>
+      <p>Revolutionizing financial management for 33.2M small businesses and 57.3M freelancers.</p>
+      <div class="cta-buttons">
+        <a href="#features" class="btn primary">Learn More</a>
+        <a href="#contact" class="btn secondary">Get Started</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/dashboard.png" alt="AI Finance Dashboard" />
+    </div>
+  </header>
+
+  <!-- Features & Innovation -->
+  <section id="features" class="section">
+    <h2>Enterprise-Grade Financial Intelligence</h2>
+    <ul>
+      <li>Financial analysis, cash flow forecasting, profitability optimization, strategic guidance</li>
+      <li>$39–$199/month — 99% cheaper than traditional CFO services</li>
+    </ul>
+    <img src="assets/insights.png" alt="AI Insights Visualization" />
+  </section>
+
+  <!-- Functionality Review -->
+  <section id="functionality" class="section alt">
+    <h2>Built for Real-World Financial Decisions</h2>
+    <ul>
+      <li>Seamless QuickBooks Online integration</li>
+      <li>Predictive analytics dashboard</li>
+      <li>Profitability optimization engine</li>
+      <li>Beta testing with 50 small businesses</li>
+    </ul>
+    <img src="assets/financial-dashboard.png" alt="Financial Data Dashboard" />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <h3>What is Insight Hunter?</h3>
+      <p>An AI-powered CFO assistant that delivers strategic financial insights at scale.</p>
+
+      <h3>How accurate is the AI analysis?</h3>
+      <p>Built on real-world CFO experience and validated with beta users — accuracy improves with usage.</p>
+
+      <h3>Who can benefit most from it?</h3>
+      <p>Small businesses, freelancers, and startups lacking access to full-time financial expertise.</p>
+
+      <h3>How does pricing work?</h3>
+      <p>Tiered monthly plans from $39 to $199 based on features and business size.</p>
+
+      <h3>How do I join the beta program?</h3>
+      <p>Fill out the contact form below or email us directly — limited spots available.</p>
+    </div>
+ </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="section alt">
+    <h2>Get in Touch with the Insight Hunter Team</h2>
+     <form method="POST" action="/api/contact" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn primary">Send Message</button>
+     </form>
+    <p class="contact-email">Or email us directly: <a href="mailto:solutions@insighthunter.app">support@insighthunter.app</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Delivering CFO-level financial intelligence for every American small business.</p>
+    <p>© 2025 Insight Hunter, Inc. All rights reserved.</p>
+  </footer>
+</body>
+</html>

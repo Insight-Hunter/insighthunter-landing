@@ -1,0 +1,127 @@
+:root {
+  --dark-bg: #0d1b1e;       /* deep teal background */
+  --teal: #1f3c40;          /* lighter teal for sections */
+  --orange: #ff7a1a;        /* bright orange accent */
+  --dark-orange: #cc5500;   /* deeper orange for hover */
+  --text-light: #f5f5f5;
+  --text-muted: #c9d1d3;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text-light);
+  background: var(--dark-bg);
+  line-height: 1.6;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  background: var(--teal);
+  color: var(--text-light);
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.hero .cta-buttons .btn {
+  margin-right: 1rem;
+}
+.hero-image img {
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+/* Sections */
+.section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.section.alt {
+  background: var(--teal);
+}
+.section h2 {
+  color: var(--orange);
+  margin-bottom: 1.5rem;
+}
+.section ul {
+  list-style: none;
+  padding: 0;
+}
+.section ul li {
+  margin: 0.5rem 0;
+  color: var(--text-muted);
+}
+
+/* FAQ */
+.faq h3 {
+  color: var(--orange);
+  margin-top: 1rem;
+}
+
+/* Contact */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background: #1a2a2d;
+  color: var(--text-light);
+}
+.contact-form button {
+  align-self: flex-start;
+}
+.contact-email {
+  margin-top: 1rem;
+  color: var(--text-muted);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.btn.primary {
+  background: var(--orange);
+  color: var(--text-light);
+}
+.btn.primary:hover {
+  background: var(--dark-orange);
+}
+.btn.secondary {
+  border: 2px solid var(--orange);
+  color: var(--orange);
+}
+.btn.secondary:hover {
+  background: var(--orange);
+  color: var(--text-light);
+}
+
+/* Footer */
+.footer {
+  background: var(--teal);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1.5rem;
+}
+

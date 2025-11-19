@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face { font-family: 'Montserrat'; src: url('/fonts/montserrat.woff2'); }
+@font-face { font-family: 'Open Sans'; src: url('/fonts/opensans.woff2'); }
+
+.bg-wave {
+  background: url('data:image/svg+xml,...') repeat-x;
+  animation: wave 20s linear infinite;
+}
+@keyframes wave { from { background-position: 0 0; } to { background-position: 100% 0; } }
+
+.primary { @apply text-[#007BFF]; }

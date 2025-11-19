@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal - Insight Hunter</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-gray-300-rgb: 167, 169, 169;
+            --color-gray-200-rgb: 245, 245, 245;
+            --color-orange-500-rgb: 168, 75, 47;
+
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-warning: var(--color-orange-500);
+
+            --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.6;
+
+            --space-8: 8px;
+            --space-10: 10px;
+            --space-12: 12px;
+            --space-15: 15px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-30: 30px;
+            --space-40: 40px;
+            --space-60: 60px;
+
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+                --color-warning: var(--color-orange-400);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background: var(--color-background);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-teal-500) 0%, var(--color-teal-700) 100%);
+            color: var(--color-white);
+            padding: var(--space-60) var(--space-20);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-10);
+            margin-bottom: var(--space-20);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--color-white);
+            border-radius: var(--radius-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+        }
+
+        h1 {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--space-10);
+            line-height: var(--line-height-tight);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 800px;
+            margin: var(--space-40) auto 0;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tab {
+            flex: 1;
+            padding: var(--space-20);
+            background: var(--color-surface);
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .tab:hover {
+            background: var(--color-background);
+        }
+
+        .tab.active {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: var(--space-40) auto;
+            padding: 0 var(--space-20);
+        }
+
+        .content {
+            background: var(--color-surface);
+            padding: var(--space-60);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: var(--font-size-3xl);
+            margin: var(--space-40) 0 var(--space-20) 0;
+            color: var(--color-text);
+            font-weight: var(--font-weight-semibold);
+            line-height: var(--line-height-tight);
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: var(--font-size-xl);
+            margin: var(--space-30) 0 var(--space-15) 0;
+            color: var(--color-text);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        p {
+            margin-bottom: var(--space-15);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        ul, ol {
+            margin: var(--space-15) 0 var(--space-15) var(--space-30);
+        }
+
+        li {
+            margin-bottom: var(--space-10);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        .effective-date {
+            background: rgba(var(--color-teal-500-rgb), 0.08);
+            padding: var(--space-15) var(--space-20);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-30);
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .highlight {
+            background: rgba(var(--color-orange-500-rgb), 0.08);
+            padding: var(--space-20);
+            border-left: 4px solid var(--color-warning);
+            border-radius: var(--radius-sm);
+            margin: var(--space-20) 0;
+        }
+
+        .highlight p {
+            color: var(--color-text);
+        }
+
+        footer {
+            background: var(--color-slate-900);
+            color: var(--color-white);
+            padding: var(--space-40) var(--space-20);
+            text-align: center;
+            margin-top: var(--space-60);
+        }
+
+        footer p {
+            opacity: 0.7;
+            color: var(--color-white);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: var(--space-30) var(--space-20);
+            }
+
+            h1 {
+                font-size: calc(var(--font-size-3xl) + 4px);
+            }
+
+            h2 {
+                font-size: var(--font-size-3xl);
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            header {
+                padding: var(--space-40) var(--space-20);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">🔍</div>
+            <span>Insight Hunter</span>
+        </div>
+        <h1>Legal Information</h1>
+    </header>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('terms')">Terms of Service</button>
+        <button class="tab" onclick="showTab('privacy')">Privacy Policy</button>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <!-- Terms of Service -->
+            <div id="terms" class="tab-content active">
+                <div class="effective-date">Effective Date: November 3, 2025</div>
+
+                <h2>Terms of Service</h2>
+                <p>Welcome to Insight Hunter. By accessing or using our service at insighthunter.app ("Service"), you agree to be bound by these Terms of Service ("Terms"). Please read them carefully.</p>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>By creating an account or using Insight Hunter, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree, please do not use our Service.</p>
+
+                <h2>2. Description of Service</h2>
+                <p>Insight Hunter provides data analysis, visualization, and intelligence tools ("Service") that help users discover patterns, trends, and insights from their data. We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time.</p>
+
+                <h2>3. Account Registration</h2>
+                <p>To use certain features of the Service, you must register for an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate, current, and complete information during registration</li>
+                    <li>Maintain and promptly update your account information</li>
+                    <li>Keep your password secure and confidential</li>
+                    <li>Notify us immediately of any unauthorized access to your account</li>
+                    <li>Be responsible for all activities that occur under your account</li>
+                </ul>
+
+                <h2>4. Acceptable Use</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the Service for any illegal purpose or in violation of any laws</li>
+                    <li>Violate or infringe upon the rights of others, including intellectual property rights</li>
+                    <li>Upload or transmit viruses, malware, or any malicious code</li>
+                    <li>Attempt to gain unauthorized access to our systems or other users' accounts</li>
+                    <li>Interfere with or disrupt the Service or servers</li>
+                    <li>Use automated systems (bots, scrapers) without our express written permission</li>
+                    <li>Reverse engineer, decompile, or disassemble any aspect of the Service</li>
+                    <li>Resell, redistribute, or provide access to the Service to third parties without authorization</li>
+                </ul>
+
+                <h2>5. User Data and Content</h2>
+                <p>You retain all rights to the data and content you upload to the Service ("User Data"). By uploading User Data, you grant us a limited license to:</p>
+                <ul>
+                    <li>Store, process, and analyze your data to provide the Service</li>
+                    <li>Create backups and ensure data security</li>
+                    <li>Generate aggregated, anonymized analytics (that cannot identify you or your data)</li>
+                </ul>
+                <p>You represent and warrant that you have all necessary rights to upload your User Data and that it does not violate any laws or third-party rights.</p>
+
+                <h2>6. Subscription and Payment</h2>
+                <p>Certain features require a paid subscription. You agree to:</p>
+                <ul>
+                    <li>Pay all fees associated with your selected plan</li>
+                    <li>Provide accurate and current billing information</li>
+                    <li>Authorize automatic renewal unless cancelled before the renewal date</li>
+                </ul>
+                <p>We reserve the right to change our pricing with 30 days' notice. Refunds are handled on a case-by-case basis at our discretion.</p>
+
+                <h2>7. Intellectual Property</h2>
+                <p>The Service, including all software, algorithms, designs, text, graphics, and other content (excluding User Data), is owned by Insight Hunter and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, or create derivative works without our express written permission.</p>
+
+                <h2>8. Third-Party Services</h2>
+                <p>Our Service may integrate with or link to third-party services. We are not responsible for the content, privacy practices, or terms of service of any third-party services. Your use of third-party services is at your own risk.</p>
+
+                <h2>9. Disclaimers and Limitations of Liability</h2>
+                <div class="highlight">
+                    <p><strong>IMPORTANT:</strong> The Service is provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+                </div>
+                <p>We do not guarantee that:</p>
+                <ul>
+                    <li>The Service will be uninterrupted, secure, or error-free</li>
+                    <li>Results or insights will be accurate, complete, or reliable</li>
+                    <li>Any errors will be corrected</li>
+                </ul>
+                <p>To the maximum extent permitted by law, Insight Hunter shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities, arising from your use of the Service.</p>
+
+                <h2>10. Indemnification</h2>
+                <p>You agree to indemnify and hold harmless Insight Hunter, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including legal fees) arising from your use of the Service, violation of these Terms, or infringement of any rights of another party.</p>
+
+                <h2>11. Termination</h2>
+                <p>We may suspend or terminate your account at any time for:</p>
+                <ul>
+                    <li>Violation of these Terms</li>
+                    <li>Fraudulent or illegal activity</li>
+                    <li>Extended periods of inactivity</li>
+                    <li>Any reason at our discretion with or without notice</li>
+                </ul>
+                <p>You may terminate your account at any time through your account settings. Upon termination, your right to use the Service immediately ceases, and we may delete your User Data in accordance with our data retention policies.</p>
+
+                <h2>12. Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms at any time. We will notify you of material changes via email or through the Service. Your continued use of the Service after changes constitutes acceptance of the modified Terms.</p>
+
+                <h2>13. Governing Law and Dispute Resolution</h2>
+                <p>These Terms are governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to conflict of law principles. Any disputes shall be resolved through binding arbitration in accordance with the rules of [Arbitration Association], except that either party may seek injunctive relief in court for intellectual property disputes.</p>
+
+                <h2>14. General Provisions</h2>
+                <p><strong>Entire Agreement:</strong> These Terms, together with our Privacy Policy, constitute the entire agreement between you and Insight Hunter.</p>
+                <p><strong>Severability:</strong> If any provision is found to be unenforceable, the remaining provisions will remain in full effect.</p>
+                <p><strong>Waiver:</strong> Our failure to enforce any right or provision does not constitute a waiver of that right or provision.</p>
+                <p><strong>Assignment:</strong> You may not assign or transfer these Terms without our written consent. We may assign our rights without restriction.</p>
+
+                <h2>15. Contact Information</h2>
+                <p>For questions about these Terms, please contact us at:</p>
+                <p>Email: legal@insighthunter.app<br>
+                Website: insighthunter.app</p>
+            </div>
+
+            <!-- Privacy Policy -->
+            <div id="privacy" class="tab-content">
+                <div class="effective-date">Effective Date: November 3, 2025</div>
+
+                <h2>Privacy Policy</h2>
+                <p>At Insight Hunter, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and protect your information when you use our Service at insighthunter.app.</p>
+
+                <h2>1. Information We Collect</h2>
+                
+                <h3>1.1 Information You Provide</h3>
+                <ul>
+                    <li><strong>Account Information:</strong> Name, email address, password, company name, and billing information</li>
+                    <li><strong>User Data:</strong> Data files, datasets, and content you upload or create using our Service</li>
+                    <li><strong>Communications:</strong> Messages, feedback, and support requests you send to us</li>
+                    <li><strong>Payment Information:</strong> Billing details processed through our third-party payment processors</li>
+                </ul>
+
+                <h3>1.2 Information Collected Automatically</h3>
+                <ul>
+                    <li><strong>Usage Data:</strong> Pages visited, features used, time spent, actions taken within the Service</li>
+                    <li><strong>Device Information:</strong> IP address, browser type, operating system, device identifiers</li>
+                    <li><strong>Cookies and Similar Technologies:</strong> Session data, preferences, and authentication tokens</li>
+                    <li><strong>Analytics:</strong> Aggregated usage patterns and performance metrics</li>
+                </ul>
+
+                <h3>1.3 Information from Third Parties</h3>
+                <p>If you connect third-party services (such as data integrations), we may receive information from those services in accordance with their terms and your authorization.</p>
+
+                <h2>2. How We Use Your Information</h2>
+                <p>We use the collected information to:</p>
+                <ul>
+                    <li>Provide, maintain, and improve the Service</li>
+                    <li>Process your data analysis requests and generate insights</li>
+                    <li>Authenticate users and prevent fraud</li>
+                    <li>Send service-related notifications and updates</li>
+                    <li>Respond to support requests and communications</li>
+                    <li>Process payments and manage subscriptions</li>
+                    <li>Analyze usage patterns to improve user experience</li>
+                    <li>Develop new features and services</li>
+                    <li>Comply with legal obligations</li>
+                    <li>Send marketing communications (with your consent, where required)</li>
+                </ul>
+
+                <h2>3. Data Storage and Security</h2>
+                <p>We implement industry-standard security measures to protect your information:</p>
+                <ul>
+                    <li><strong>Encryption:</strong> Data is encrypted in transit (TLS/SSL) and at rest (AES-256)</li>
+                    <li><strong>Access Controls:</strong> Strict authentication and authorization protocols</li>
+                    <li><strong>Infrastructure:</strong> Secure cloud hosting with reputable providers</li>
+                    <li><strong>Monitoring:</strong> Continuous security monitoring and incident response</li>
+                    <li><strong>Regular Audits:</strong> Periodic security assessments and updates</li>
+                </ul>
+                <div class="highlight">
+                    <p><strong>Note:</strong> While we use reasonable security measures, no system is completely secure. We cannot guarantee absolute security of your data.</p>
+                </div>
+
+                <h2>4. Data Sharing and Disclosure</h2>
+                <p>We do not sell your personal information. We may share your information in the following circumstances:</p>
+
+                <h3>4.1 Service Providers</h3>
+                <p>We share data with trusted third-party service providers who assist us in operating the Service, including:</p>
+                <ul>
+                    <li>Cloud hosting and infrastructure providers</li>
+                    <li>Payment processors</li>
+                    <li>Analytics and monitoring services</li>
+                    <li>Customer support tools</li>
+                    <li>Email communication services</li>
+                </ul>
+                <p>These providers are contractually obligated to protect your data and use it only for specified purposes.</p>
+
+                <h3>4.2 Legal Requirements</h3>
+                <p>We may disclose information if required by law or in response to:</p>
+                <ul>
+                    <li>Valid legal processes (subpoenas, court orders)</li>
+                    <li>Requests from government authorities</li>
+                    <li>Protection of our rights, property, or safety</li>
+                    <li>Investigation of fraud or security issues</li>
+                </ul>
+
+                <h3>4.3 Business Transfers</h3>
+                <p>If we are involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction. We will notify you of any such change and your options.</p>
+
+                <h3>4.4 With Your Consent</h3>
+                <p>We may share information with your explicit consent for specific purposes not covered above.</p>
+
+                <h2>5. Your Rights and Choices</h2>
+                <p>Depending on your location, you may have the following rights:</p>
+
+                <h3>5.1 Access and Portability</h3>
+                <ul>
+                    <li>Request a copy of your personal information</li>
+                    <li>Export your User Data in a machine-readable format</li>
+                </ul>
+
+                <h3>5.2 Correction and Updates</h3>
+                <ul>
+                    <li>Update or correct your account information</li>
+                    <li>Request corrections to inaccurate data</li>
+                </ul>
+
+                <h3>5.3 Deletion</h3>
+                <ul>
+                    <li>Request deletion of your account and associated data</li>
+                    <li>Note: Some data may be retained for legal or operational purposes</li>
+                </ul>
+
+                <h3>5.4 Marketing Opt-Out</h3>
+                <ul>
+                    <li>Unsubscribe from marketing emails via the link in each message</li>
+                    <li>Manage communication preferences in your account settings</li>
+                </ul>
+
+                <h3>5.5 Cookie Preferences</h3>
+                <ul>
+                    <li>Manage cookie settings through your browser</li>
+                    <li>Note: Disabling cookies may affect Service functionality</li>
+                </ul>
+
+                <p>To exercise these rights, contact us at privacy@insighthunter.app</p>
+
+                <h2>6. Data Retention</h2>
+                <p>We retain your information for as long as necessary to:</p>
+                <ul>
+                    <li>Provide the Service and maintain your account</li>
+                    <li>Comply with legal obligations</li>
+                    <li>Resolve disputes and enforce our agreements</li>
+                </ul>
+                <p>When you delete your account, we will delete or anonymize your data within 90 days, except for data we are required to retain by law or for legitimate business purposes.</p>
+
+                <h2>7. International Data Transfers</h2>
+                <p>Your information may be transferred to and processed in countries other than your country of residence. These countries may have different data protection laws. We ensure appropriate safeguards are in place through:</p>
+                <ul>
+                    <li>Standard contractual clauses</li>
+                    <li>Data processing agreements</li>
+                    <li>Compliance with applicable data protection regulations</li>
+                </ul>
+
+                <h2>8. Children's Privacy</h2>
+                <p>Our Service is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have collected data from a child without parental consent, we will take steps to delete such information.</p>
+
+                <h2>9. Cookies and Tracking Technologies</h2>
+                <p>We use cookies and similar technologies for:</p>
+                <ul>
+                    <li><strong>Essential Cookies:</strong> Required for authentication and Service functionality</li>
+                    <li><strong>Analytics Cookies:</strong> Help us understand how users interact with the Service</li>
+                    <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                    <li><strong>Marketing Cookies:</strong> Used to deliver relevant advertisements (with consent)</li>
+                </ul>
+                <p>You can control cookie preferences through your browser settings, though some features may not function properly without cookies.</p>
+
+                <h2>10. Third-Party Links</h2>
+                <p>Our Service may contain links to third-party websites or services. We are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies before providing any information.</p>
+
+                <h2>11. California Privacy Rights (CCPA)</h2>
+                <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act:</p>
+                <ul>
+                    <li>Right to know what personal information is collected, used, and shared</li>
+                    <li>Right to delete personal information</li>
+                    <li>Right to opt-out of the sale of personal information (we do not sell personal information)</li>
+                    <li>Right to non-discrimination for exercising your privacy rights</li>
+                </ul>
+
+                <h2>12. European Union and UK Data Protection (GDPR)</h2>
+                <p>If you are in the EU or UK, you have rights under the General Data Protection Regulation:</p>
+                <ul>
+                    <li>Legal basis for processing (consent, contract, legitimate interests)</li>
+                    <li>Right to withdraw consent at any time</li>
+                    <li>Right to object to processing</li>
+                    <li>Right to lodge a complaint with a supervisory authority</li>
+                    <li>Right to restriction of processing</li>
+                </ul>
+
+                <h2>13. Changes to This Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of material changes by:</p>
+                <ul>
+                    <li>Posting the updated policy on our website</li>
+                    <li>Sending an email notification to your registered email address</li>
+                    <li>Displaying a prominent notice within the Service</li>
+                </ul>
+                <p>Your continued use of the Service after changes constitutes acceptance of the updated Privacy Policy.</p>
+
+                <h2>14. Contact Us</h2>
+                <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+                <p>
+                    <strong>Email:</strong> privacy@insighthunter.app<br>
+                    <strong>Website:</strong> insighthunter.app<br>
+                    <strong>Data Protection Officer:</strong> dpo@insighthunter.app
+                </p>
+
+                <h2>15. Your Consent</h2>
+                <p>By using our Service, you consent to the collection and use of your information as described in this Privacy Policy.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Insight Hunter. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            
+            event.target.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

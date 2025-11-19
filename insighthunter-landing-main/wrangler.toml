@@ -1,0 +1,28 @@
+name = "insight"
+compatibility_date = "2025-11-04"
+#pages_build_output_dir = "pages"
+
+[assets]
+directory = "./pages"
+
+[[d1_databases]]
+binding = "IHWEB_DB"
+database_name = "ihweb_db1"
+database_id = "7955b47c-f3c6-4ce4-b4d0-d44f9b425c7c"
+
+[[kv_namespaces]]
+binding = "LEAD_TOKENS"
+id = "206065be6fec46369b6f44d91541e436"
+
+[[kv_namespaces]]
+binding = "PREVIEW_SEED"
+id = "143442d1396e4257aa96d5a70eb3fcb3"
+
+[[kv_namespaces]]
+binding = "QUIZ_SESSIONS"
+id = "f2c2b03e042948d39a9797899689d590"
+
+[[durable_objects.bindings]]
+name = "IH_REFERRAL_DO"
+class_name = "ReferralTracker"
+script_name = "insighthunter-landing"
