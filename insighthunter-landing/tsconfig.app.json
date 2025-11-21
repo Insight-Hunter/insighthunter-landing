@@ -10,9 +10,9 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImpaortingTsExtensions": true,
+    "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "moduleDetection": "force";s,
+    "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
 
