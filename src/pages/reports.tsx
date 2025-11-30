@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function Reports() {
   const [reports, setReports] = useState<any[]>([]);
   const [role, setRole] = useState<"admin" | "editor" | "viewer" | null>(null);
+  const [selected, setSelected] = useState<number[]>([]);
   const email = "demo@insighthunter.app"; // replace with logged-in user email
 
   useEffect(() => {
@@ -28,20 +29,28 @@ export default function Reports() {
     checkRole();
   }, []);
 
-  const deleteReport = async (id: number) => {
+  const toggleSelect = (id: number) => {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
+
+  const deleteSelected = async () => {
     const token = localStorage.getItem("ih_token");
     if (!token) return alert("Unauthorized");
+    if (selected.length === 0) return alert("No reports selected");
 
     await fetch("/reports/cleanup", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ids: [id] }),
+      body: JSON.stringify({ ids: selected }),
     });
 
-    setReports((prev) => prev.filter((r) => r.id !== id));
+    setReports((prev) => prev.filter((r) => !selected.includes(r.id)));
+    setSelected([]);
   };
 
   return (
@@ -51,36 +60,50 @@ export default function Reports() {
         {reports.length === 0 ? (
           <p className="text-gray-600">No reports yet.</p>
         ) : (
-          <ul className="space-y-4">
-            {reports.map((r) => (
-              <li key={r.id} className="border-b pb-3 flex justify-between items-center">
-                <div>
-                  <p className="font-semibold">Report #{r.id}</p>
-                  <p className="text-sm text-gray-600">
-                    {new Date(r.created_at).toLocaleString()}
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <a
-                    href={`/reports/file?key=${encodeURIComponent(r.file_url)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-orange-600 text-white px-3 py-1 rounded"
-                  >
-                    View PDF
-                  </a>
-                  {role === "admin" && (
-                    <button
-                      onClick={() => deleteReport(r.id)}
-                      className="bg-red-600 text-white px-3 py-1 rounded"
+          <>
+            {role === "admin" && selected.length > 0 && (
+              <button
+                onClick={deleteSelected}
+                className="mb-4 bg-red-600 text-white px-4 py-2 rounded"
+              >
+                Delete Selected ({selected.length})
+              </button>
+            )}
+            <ul className="space-y-4">
+              {reports.map((r) => (
+                <li
+                  key={r.id}
+                  className="border-b pb-3 flex justify-between items-center"
+                >
+                  <div className="flex items-center gap-3">
+                    {role === "admin" && (
+                      <input
+                        type="checkbox"
+                        checked={selected.includes(r.id)}
+                        onChange={() => toggleSelect(r.id)}
+                      />
+                    )}
+                    <div>
+                      <p className="font-semibold">Report #{r.id}</p>
+                      <p className="text-sm text-gray-600">
+                        {new Date(r.created_at).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <a
+                      href={`/reports/file?key=${encodeURIComponent(r.file_url)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-orange-600 text-white px-3 py-1 rounded"
                     >
-                      Delete
-                    </button>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+                      View PDF
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
     </main>
