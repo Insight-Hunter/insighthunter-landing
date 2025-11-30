@@ -6,7 +6,7 @@ export default function MyReports() {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch(`/reports/my?email=${email}`);
+      const res = await fetch(`/reports/mine?email=${email}`);
       const data = await res.json();
       setReports(data);
     };
