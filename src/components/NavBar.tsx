@@ -45,7 +45,7 @@ export default function NavBar() {
         )}
       </div>
       <div className="flex gap-4 items-center">
-        {email ? (
+        {!email && (
           <>
             <span className="text-sm text-gray-300">{email}</span>
             <button
@@ -62,7 +62,14 @@ export default function NavBar() {
           >
             Login
           </Link>
-        )}
+        ) : (
+          <Link
+           to="/signup"
+           className="bg-green-600 px-3 py-1 rounded text-white"
+          >
+          Sign Up
+          </Link>
+         )}
       </div>
     </nav>
   );
