@@ -15,12 +15,48 @@ export default function Quiz() {
   const next = () => setStep((s) => (s < 3 ? ((s + 1) as Step) : s));
   const prev = () => setStep((s) => (s > 0 ? ((s - 1) as Step) : s));
 
-  const submit = async () => {
-    setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200)); // simulate API call
+  const submit = async (mode: "download" | "view") => {
+     rsetSubmitting(true);
+  await new Promise((r) => setTimeout(r, 1200)); // simulate API call
     setSubmitting(false);
     setDone(true);
-  };
+  try {
+    const res = await fetch("/reports/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "demo@insighthunter.app", // replace with logged-in user email if available
+        answers,
+      }),
+    });
+
+    if (!res.ok) throw new Error("Failed to generate report");
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    if (mode === "download") {
+      // Trigger download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "quiz-report.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } else {
+      // Open in new tab
+      window.open(url, "_blank");
+    }
+
+    setDone(true);
+  } catch (err) {
+    console.error(err);
+    alert("Error generating PDF report");
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center px-6 py-10">
@@ -76,39 +112,26 @@ export default function Quiz() {
             </div>
           )}
 
-          {step === 3 && (
-            <div className="space-y-4">
-              <p className="text-gray-700">Ready to generate your recommendation?</p>
-              <ul className="text-sm text-gray-600 list-disc pl-6">
-                <li>Signals: {answers.signals || "-"}</li>
-                <li>Cadence: {answers.cadence || "-"}</li>
-                <li>Roles: {answers.roles || "-"}</li>
-              </ul>
-            </div>
-          )}
-
-          <div className="flex justify-between mt-6">
-            <button className="px-3 py-2 border rounded" onClick={prev} disabled={step === 0}>
-              Back
-            </button>
-            {step < 3 ? (
-              <button className="px-3 py-2 bg-black text-white rounded" onClick={next}>
-                Next
-              </button>
-            ) : (
-              <button
-                className="px-3 py-2 bg-orange-600 text-white rounded"
-                onClick={submit}
-                disabled={submitting}
-              >
-                {submitting ? "Submitting..." : "Generate"}
-              </button>
-            )}
-          </div>
-        </div>
-      )}
-
-      {submitting && (
+         {step === 3 && (
+  <div className="flex gap-3">
+    <button
+      className="px-3 py-2 bg-orange-600 text-white rounded"
+      onClick={() => submit("download")}
+      disabled={submitting}
+    >
+      {submitting ? "Submitting..." : "Download Report"}
+    </button>
+    <button
+      className="px-3 py-2 bg-black text-white rounded"
+      onClick={() => submit("view")}
+      disabled={submitting}
+    >
+      {submitting ? "Submitting..." : "View Report"}
+    </button>
+  </div>
+)}
+          
+    {submitting && (
         <div className="mt-8">
           <LottiePlayer animation={loadingAnimation} className="h-24 w-24" />
         </div>
