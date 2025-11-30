@@ -28,7 +28,10 @@ export const onRequestPost = async ({ request, env }) => {
 
   doc.end();
 
-  const pdfBuffer = await done;
+  const pdfBuffer = await env.INSIGHT_DB.prepare(
+       "INSERT INTO reports (email, answers, file_url) VALUES (?, ?, ?)"
+        ).bind(email, JSON.stringify(answers), null).run(), 
+        await done;
 
   return new Response(pdfBuffer, {
     headers: {
