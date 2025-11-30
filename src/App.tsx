@@ -1,6 +1,7 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages";
+import NavBar from ".components/NavBar";
 import Quiz from "./pages/quiz";
 import Referral from "./pages/referral";
 import AdminDashboard from "./pages/admin";
@@ -10,6 +11,8 @@ import MyReports from "./pages/my-reports";
 
 export default function App() {
   return (
+    <>
+    <NavBar />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,5 +24,6 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
