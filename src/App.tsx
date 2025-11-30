@@ -5,6 +5,7 @@ import Quiz from "./pages/quiz";
 import Referral from "./pages/referral";
 import AdminDashboard from "./pages/admin";
 import NotFound from "./pages/not-found";
+import Reports from "./pages/reports";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/referral/:code" element={<Referral />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/reports" element={<Reports />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
