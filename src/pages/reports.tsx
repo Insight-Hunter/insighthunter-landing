@@ -94,6 +94,7 @@ export default function Reports() {
               onChange={(e) => setFilters({ ...filters, end: e.target.value })}
             />
           </div>
+          
           <button
             className="bg-black text-white px-4 py-2 rounded"
             onClick={() => setFilters({ email: "", start: "", end: "" })}
@@ -114,8 +115,15 @@ export default function Reports() {
                 className="mb-4 bg-red-600 text-white px-4 py-2 rounded"
               >
                 Delete Selected ({selected.length})
-              </button>
-            )}
+              </button>),
+ (<button <a
+    href={`/reports/export?email=${filters.email}&start=${filters.start}&end=${filters.end}`}
+    className="mb-4 bg-green-600 text-white px-4 py-2 rounded inline-block"
+  >
+    Export CSV
+  </a></button)
+)}
+
             <ul className="space-y-4">
               {reports.map((r) => (
                 <li
