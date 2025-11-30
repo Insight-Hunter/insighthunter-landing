@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS blog_posts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT UNIQUE,
+  title TEXT,
+  excerpt TEXT,
+  author TEXT,
+  content TEXT
+);
+
+CREATE TABLE IF NOT EXISTS testimonials (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  company TEXT,
+  quote TEXT,
+  image_url TEXT,
+  rating INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS pricing_plans (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  price TEXT,
+  features TEXT
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE,
+  role TEXT
+);
