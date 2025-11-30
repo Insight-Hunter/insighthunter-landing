@@ -38,6 +38,23 @@ export default function Reports() {
                     >
                        View PDF
                      </a>
+
+                <button
+  className="bg-red-600 text-white px-3 py-1 rounded"
+  onClick={async () => {
+    const ids = reports.map((r) => r.id); // or selected IDs
+    await fetch("/reports/cleanup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    });
+    alert("Reports cleaned up");
+    window.location.reload();
+  }}
+>
+  Cleanup All
+</button>
+
                 
                   ) : (
                     <span className="text-gray-500">No file stored</span>
