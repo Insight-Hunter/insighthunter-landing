@@ -31,13 +31,14 @@ export default function Reports() {
                   </div>
                   {r.file_url ? (
                     <a
-                      href={r.file_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-orange-600 text-white px-3 py-1 rounded"
+                     href={`/reports/file?key=${encodeURIComponent(r.file_url)}`}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="bg-orange-600 text-white px-3 py-1 rounded"
                     >
-                      View PDF
-                    </a>
+                       View PDF
+                     </a>
+                
                   ) : (
                     <span className="text-gray-500">No file stored</span>
                   )}
