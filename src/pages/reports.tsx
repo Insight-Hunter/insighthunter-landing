@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 
-export default function ReportsHistory() {
+export default function Reports() {
   const [reports, setReports] = useState<any[]>([]);
-  const email = "demo@insighthunter.app"; // replace with logged-in user email
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch(`/reports/history?email=${email}`);
+      const res = await fetch("/reports/list");
       const data = await res.json();
       setReports(data);
     };
@@ -16,33 +15,38 @@ export default function ReportsHistory() {
   return (
     <main className="min-h-screen bg-gray-50 px-6 py-10">
       <h1 className="text-3xl font-bold mb-6">Report History</h1>
-      <ul className="space-y-4">
-        {reports.map((r) => (
-          <li key={r.id} className="bg-white rounded shadow p-4 flex justify-between items-center">
-            <div>
-              <div className="font-semibold">Report #{r.id}</div>
-              <div className="text-sm text-gray-600">
-                {new Date(r.created_at).toLocaleString()}
-              </div>
-            </div>
-            <button
-              className="bg-orange-600 text-white px-3 py-1 rounded"
-              onClick={async () => {
-                const res = await fetch("/reports/generate", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ email, answers: JSON.parse(r.answers) }),
-                });
-                const blob = await res.blob();
-                const url = window.URL.createObjectURL(blob);
-                window.open(url, "_blank");
-              }}
-            >
-              View
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="bg-white rounded shadow p-6">
+        {reports.length === 0 ? (
+          <p className="text-gray-600">No reports yet.</p>
+        ) : (
+          <ul className="space-y-4">
+            {reports.map((r) => (
+              <li key={r.id} className="border-b pb-3">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="font-semibold">{r.email}</p>
+                    <p className="text-sm text-gray-600">
+                      {new Date(r.created_at).toLocaleString()}
+                    </p>
+                  </div>
+                  {r.file_url ? (
+                    <a
+                      href={r.file_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-orange-600 text-white px-3 py-1 rounded"
+                    >
+                      View PDF
+                    </a>
+                  ) : (
+                    <span className="text-gray-500">No file stored</span>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </main>
   );
 }
