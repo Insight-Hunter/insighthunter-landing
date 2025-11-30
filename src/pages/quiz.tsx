@@ -1,4 +1,3 @@
-// src/pages/quiz.tsx
 import { useState } from "react";
 import LottiePlayer from "../components/LottiePlayer";
 import loadingAnimation from "/public/animations/loading.json";
@@ -34,7 +33,6 @@ export default function Quiz() {
       const url = window.URL.createObjectURL(blob);
 
       if (mode === "download") {
-        // Trigger download
         const a = document.createElement("a");
         a.href = url;
         a.download = "quiz-report.pdf";
@@ -43,7 +41,6 @@ export default function Quiz() {
         a.remove();
         window.URL.revokeObjectURL(url);
       } else {
-        // Open in new tab
         window.open(url, "_blank");
       }
 
@@ -159,11 +156,4 @@ export default function Quiz() {
 
       {done && (
         <div className="bg-white rounded shadow p-6 w-full max-w-xl mt-6 text-center">
-          <LottiePlayer animation={successAnimation} loop={false} className="h-32 w-32 mx-auto" />
-          <h2 className="text-xl font-bold mt-4">Recommendation ready</h2>
-          <p className="text-gray-700">Your PDF report has been generated successfully.</p>
-        </div>
-      )}
-    </main>
-  );
-}
+          <LottiePlayer animation={successAnimation} loop={false} className="h-32 w-32
