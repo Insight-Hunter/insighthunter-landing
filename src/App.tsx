@@ -8,6 +8,11 @@ import AdminDashboard from "./pages/admin";
 import NotFound from "./pages/not-found";
 import Reports from "./pages/reports";
 import MyReports from "./pages/my-reports";
+import Signup from "./pages/signup";
+
+
+
+
 
 export default function App() {
   return (
@@ -18,6 +23,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/referral/:code" element={<Referral />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/my-reports" element={<MyReports />} />
